@@ -5,6 +5,10 @@
   <servlet>
   	<servlet-name>frontController</servlet-name>
 	<servlet-class>kr.ac.kopo.controller.FrontCotrollerServlet</servlet-class>  
+	<init-param>
+		<param-name>propLocation</param-name>
+		<param-value>D:\\Lecture\\web-workspace\\MissionMVC\\bean.properties</param-value>
+	</init-param>
   </servlet>
   
   <servlet-mapping>

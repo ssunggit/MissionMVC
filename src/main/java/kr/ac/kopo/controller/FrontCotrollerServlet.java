@@ -3,6 +3,7 @@ package kr.ac.kopo.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 
 //	대표 서블릿 
 public class FrontCotrollerServlet extends HttpServlet{	
+	
+	private	HandlerMapping mappings;
+	
+	//ServletConfig : 서블릿의 환경설정을 가지고 있음
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		String propLocation = config.getInitParameter("propLocation");
+		//System.out.println(propLocation);
+		mappings = new HandlerMapping(propLocation);	
+	}
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		MissionMVC : request.getContextPath();
@@ -24,7 +36,6 @@ public class FrontCotrollerServlet extends HttpServlet{
 		System.out.println("uri: " + uri);
 //		System.out.println("context: " + context);		
 		try {
-			HandlerMapping mappings = new HandlerMapping();
 			//String callPage = null;
 			//Controller control = null;
 			Controller control = mappings.getController(uri);
